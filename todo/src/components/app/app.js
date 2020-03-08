@@ -31,7 +31,7 @@ export default class App extends Component {
 
 	deleteItem = (id) => {
 		this.setState(({todoData}) => {
-			const idx = todoData.findIndex((el) => el.id == id);
+			const idx = todoData.findIndex((el) => el.id === id);
 			const newArray = [...todoData.slice(0, idx),
 											  ...todoData.slice(idx + 1)];
 			return {
@@ -53,7 +53,7 @@ export default class App extends Component {
 	};
 
 	toggleProperty = (arr, id, propName) => {
-		const idx = arr.findIndex((el) => el.id == id);
+		const idx = arr.findIndex((el) => el.id === id);
 		const oldItem = arr[idx];
 		const newItem = { ...oldItem, [propName]: !oldItem[propName] };
 		const newArray = [

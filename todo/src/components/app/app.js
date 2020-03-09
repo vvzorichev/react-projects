@@ -10,7 +10,7 @@ import './app.css';
 
 export default class App extends Component {
 
-	maxId = 100;
+	maxId = 1;
 
 	createTodoItem = (label) => {
 		return {
@@ -19,7 +19,7 @@ export default class App extends Component {
 			done: false,
 			id: this.maxId++
 		}
-	}
+	};
 
 	state = {
 		items: [
@@ -29,17 +29,6 @@ export default class App extends Component {
 		],
 		filter: 'all',
     search: ''
-	};
-
-	onDelete = (id) => {
-		this.setState(({items}) => {
-			const idx = items.findIndex((el) => el.id === id);
-			const newArray = [...items.slice(0, idx),
-											  ...items.slice(idx + 1)];
-			return {
-				items: newArray
-			};
-		});
 	};
 
 	onAdd = (text) => {
@@ -53,6 +42,17 @@ export default class App extends Component {
 		});
 	};
 
+	onDelete = (id) => {
+		this.setState(({items}) => {
+			const idx = items.findIndex((el) => el.id === id);
+			const newArray = [...items.slice(0, idx),
+											  ...items.slice(idx + 1)];
+			return {
+				items: newArray
+			};
+		});
+	};
+
 	toggleProperty = (arr, id, propName) => {
 		const idx = arr.findIndex((el) => el.id === id);
 		const oldItem = arr[idx];
@@ -62,7 +62,7 @@ export default class App extends Component {
 			newItem, 
 			...arr.slice(idx + 1)];
 		return newArray;
-	}
+	};
 
 	onDone = (id) => {
 		this.setState(({items}) => {
@@ -96,7 +96,7 @@ export default class App extends Component {
     } else if (filter === 'done') {
       return items.filter((item) => item.done);
     }
-  }
+  };
 
   searchItems(items, search) {
     if (search.length === 0) {
@@ -106,7 +106,7 @@ export default class App extends Component {
     return items.filter((item) => {
       return item.label.toLowerCase().indexOf(search.toLowerCase()) > -1;
     });
-  }
+  };
 
 	render() {
 		const { items, filter, search } = this.state;
@@ -125,7 +125,7 @@ export default class App extends Component {
 				<div className="top-panel d-flex">
 					<SearchPanel 
 						onSearchChange={this.onSearchChange} />
-						
+
 					<ItemStatusFilter 
 						filter={filter}
             onFilterChange={this.onFilterChange} />

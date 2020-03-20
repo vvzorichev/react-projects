@@ -15,17 +15,18 @@ export default class SwapiService {
 
 	async getAllPlpanets() {
 		const res = await this.getResource(`/planets/`);
-		return res.results;
+		return res.results.map(this._transformPlanet);
 	}
 
-	async getPerson(id) {
-		const person = await this.getResource(`/persons/${id}/`);
-		return this._transformPerson(person);	
+	async getPeople(id) {
+		const people = await this.getResource(`/people/${id}/`);
+		console.log(people);
+		return this._transformPeople(people);	
 	}
 
-	async getAllPersons() {
-		const res = await this.getResource(`/persons/`);
-		return res.results;
+	async getAllPeople() {
+		const res = await this.getResource(`/people/`);
+		return res.results.map(this._transformPeople);
 	}
 
 	async getPlanet(id) {
@@ -35,7 +36,7 @@ export default class SwapiService {
 
 	async getAllStarships() {
 		const res = await this.getResource(`/starships/`);
-		return res.results;
+		return res.results.map(this._transformStarship);;
 	}
 
 	async getStarship(id) {
@@ -48,17 +49,17 @@ export default class SwapiService {
 		return item.url.match(idRegExp)[1];
 	}
 
-	_transformPerson(person) {
+	_transformPeople = (people) => {
 		return { 
-			id: this._extractID(person),
-			name: person.name,
-			gender: person.gender, 
-			birthYear: person.birthYear,
-			eyeColor: person.eyeColor
+			id: this._extractID(people),
+			name: people.name,
+			gender: people.gender, 
+			birthYear: people.birth_year,
+			eyeColor: people.eye_color
 		}
 	}
 
-	_transformPlanet(planet) {
+	_transformPlanet = (planet) => {
 		return { 
 			id: this._extractID(planet),
 			name: planet.name,
@@ -68,7 +69,7 @@ export default class SwapiService {
 		}
 	}
 
-	_transformStarship(starship) {
+	_transformStarship = (starship) => {
 		return { 
 			id: this._extractID(starship),
 			name: starship.name,
@@ -78,7 +79,7 @@ export default class SwapiService {
 			length:starship.length,
 			crew: starship.crew,
 			passengers: starship.passengers,
-			cargoCapacity: starship.cargoCapacity
+			cargoCapacity: starship.cargo_apacity
 		}
 	}
 

@@ -64,12 +64,16 @@ export default class ItemDetails extends Component {
 
   render() {
 		const { item, image, loading, error } = this.state;
-		
+
 		const hasData = !(loading || error);
 
 		const errorMessage = error ? <ErrorIndicator /> : null;
 		const spinner = loading ? <Spinner /> : null;
-		const content = hasData ? <ItemView item={item} image={image}>{this.props.children}</ItemView> : null;
+		const content = hasData ? <ItemView 
+																item={item}
+																image={image}>
+																{ this.props.children }
+															</ItemView> : null;
 
     return (
       <div className="person-details card">
@@ -81,22 +85,25 @@ export default class ItemDetails extends Component {
   };
 };
 
-const ItemView = ({ item, image }) => {
-
-	const { name, gender, birthYear, eyeColor } = item;
-	
-	return (
-		<React.Fragment>
+class ItemView extends Component {
+	render() {
+		const { item, image } = this.props;
+		const { name } = item;
+		return (
+			<React.Fragment>
 			<img className="person-image"
 					src={image}
 					alt="character" />
 			<div className="card-body">
 				<h4>{name}</h4>
 				<ul className="list-group list-group-flush">
-					{ this.props.children }
+					{ React.Children.map(this.props.children, (child) => {
+						return React.cloneElement(child, { item });
+					}) }
 				</ul>
 			</div>
 		</React.Fragment>
-	)
+		);
+	};
 };
 

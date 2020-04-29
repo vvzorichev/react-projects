@@ -11,7 +11,7 @@ import SwapiService from '../../services/swapi-service';
 import './app.css';
 
 export default class App extends Component {
-	swapiService = new SwapiService;
+	swapiService = new SwapiService();
 	
 	render() {
 		
@@ -26,6 +26,7 @@ export default class App extends Component {
 				getData={getPerson}
 				getImageUrl={getPersonImage}>
 					<Record label="Gender" field="gender" />
+					<Record label="Eye color" field="eyeColor" />
 			</ItemDetails>
 		);
 
@@ -34,7 +35,8 @@ export default class App extends Component {
 				itemId={9}
 				getData={getStarship}
 				getImageUrl={getStarshipImage}>
-			
+					<Record label="Model" field="model" />
+					<Record label="Length" field="length" />
 			</ItemDetails>
 		);
 
@@ -45,6 +47,7 @@ export default class App extends Component {
 					<Row 
 						left={personDetails}
 						right={starshipDetails} />
+					<PeoplePage/>
 				</div>
 			</ErrorBoundary>
 			

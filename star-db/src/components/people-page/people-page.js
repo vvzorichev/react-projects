@@ -31,9 +31,6 @@ export default class PeoplePage extends Component {
 				onItemSelected={this.onPeopleSelected}
 				getData={getAllPerson} >
 
-				{(item) => (
-					`${item.name} (${item.birthYear})`
-				)}
 
 			</ItemList>
 		);

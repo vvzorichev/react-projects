@@ -7,13 +7,10 @@ import SwapiService from '../../services/swapi-service';
 import { SwapiServiceProvider } from '../swapi-service-context';
 
 import {
-	PersonList,
-  PlanetList,
-	StarshipList,
-	PersonDetails,
-  PlanetDetails,
-	StarshipDetails
-} from '../sw-components'
+	PersonsPage,
+	PlanetsPage,
+	StarshipsPage
+} from '../pages'
 
 import './app.css';
 
@@ -26,12 +23,11 @@ export default class App extends Component {
 				<SwapiServiceProvider value={this.swapiService} >
 					<Header />
 					<RandomPlanet />
-					<PersonDetails itemId={11} />
-					<PersonList />
-					<PlanetDetails itemId={5} />
-					<PlanetList />
-					<StarshipDetails itemId={10} />
-					<StarshipList />
+
+					<PersonsPage />
+					<PlanetsPage />
+					<StarshipsPage />
+					
 				</SwapiServiceProvider>
 			</ErrorBoundary>
   	);

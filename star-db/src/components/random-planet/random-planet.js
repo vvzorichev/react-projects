@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
-import SwapiService from '../../services/swapi-service';
+import SwapiService from '../../services/dummy-swapi-service';
 
 import './random-planet.css';
 
@@ -13,13 +13,13 @@ export default class RandomPlanet extends Component {
 		updateInterval: 2000
 	};
 
-	static prpopTypes = {
+	static propTypes = {
 		updateInterval: PropTypes.number
 	};
 
 	state = {
 		planet: {},
-		loading: true,
+		loading: true, 
 		error: false
 	};
 

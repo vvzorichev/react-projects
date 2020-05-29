@@ -75,7 +75,7 @@ const PlanetInfo = ( {id} ) => {
 	}
 
 	if(loading) {
-		return <div>DICKPIC</div>
+		return <div>PIC</div>
 	}
 
 	return (

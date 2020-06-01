@@ -31,7 +31,7 @@ const fetchBooks = (bookstoreService) => () => (dispatch) => {
 	bookstoreService.getBooks()
 		.then((data) => dispatch(booksLoaded(data)))
 		.catch((err) => dispatch(booksError(err)));
-};
+}; 
 
 const bookAddedToCart = (bookId) => {
 	return {
